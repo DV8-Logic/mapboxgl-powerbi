@@ -129,9 +129,10 @@ module powerbi.extensibility.visual {
                 this.colorStops = this.generateColorStops(settings.circle, isGradient, limits.color, this.palette)
                 let colorStyle = Circle.getColorStyle(isGradient, settings, roleMap.color, this.colorStops);
 
-                map.setPaintProperty(Circle.ID, 'circle-radius', sizes);
                 map.setPaintProperty(Circle.HighlightID, 'circle-radius', sizes);
                 map.setPaintProperty(Circle.HighlightID, 'circle-color', settings.circle.highlightColor);
+                map.setLayerZoomRange(Circle.HighlightID, settings.circle.minZoom, settings.circle.maxZoom);
+                map.setPaintProperty(Circle.ID, 'circle-radius', sizes);
                 map.setPaintProperty(Circle.ID, 'circle-color', colorStyle);
                 map.setLayerZoomRange(Circle.ID, settings.circle.minZoom, settings.circle.maxZoom);
                 map.setPaintProperty(Circle.ID, 'circle-blur', settings.circle.blur / 100);
